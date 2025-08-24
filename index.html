@@ -57,7 +57,7 @@
             width: 100%;
             height: 100vh;
             border: none;
-            margin-top: 80px; /* Espacio para el menú de navegación */
+            margin-top: 80px;
         }
     </style>
 </head>
@@ -68,6 +68,9 @@
         <a href="web page.html" target="presentation-frame" class="nav-button">Propuesta IA</a>
         <a href="web page 2.html" target="presentation-frame" class="nav-button">Infografía IA</a>
         <a href="fleet_security_presentation.html" target="presentation-frame" class="nav-button">Soluciones Flotillas</a>
+        <a href="DOC PROPUESTA+CHECK LIST.pdf" download class="nav-button">
+            Descargar PDF
+        </a>
     </nav>
 
     <iframe src="petroil_security_presentation.html" name="presentation-frame" title="Presentación de Seguridad"></iframe>
@@ -78,7 +81,10 @@
             navButtons.forEach(button => {
                 button.addEventListener('click', (e) => {
                     navButtons.forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
+                    // Evita que el botón de descarga se marque como activo
+                    if (!e.target.hasAttribute('download')) {
+                        e.target.classList.add('active');
+                    }
                 });
             });
         });
