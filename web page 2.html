@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Propuesta de Seguridad Inteligente para Flotas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Brilliant Blues -->
+    <!-- 
+    Application Structure Plan: 
+    The infographic follows a compelling narrative structure designed for an executive audience, guiding them from problem to solution to impact.
+    1. Hook (The Problem): Immediately establishes the high stakes of signal jamming with large, impactful numbers.
+    2. The Solution (AI-Powered Strategy): Presents the 3-step AI process as a clear, logical flow.
+    3. Technology Deep Dive (Defense Layers): Visualizes and compares the proposed technologies using a bar chart for effectiveness, allowing for quick comprehension of their relative strengths.
+    4. Financial Impact (The ROI): Uses a donut chart to starkly contrast the cost of inaction (theft) with the cost of the solution, making a powerful business case.
+    5. Conclusion (Summary & Call to Action): A final summary reinforces the value proposition.
+    This linear, story-driven approach simplifies complex information and focuses on the key takeaways relevant to decision-makers: the problem's scale, the solution's logic, and the financial benefit.
+    -->
+    <!-- 
+    Visualization & Content Choices:
+    - Key Metrics (The Problem): Goal: Inform. Method: Large text numbers with Unicode icons (HTML/CSS). Justification: Conveys the magnitude of the problem instantly for maximum impact. No interaction needed.
+    - AI Process Flow: Goal: Organize. Method: Styled HTML divs with flexbox to represent a 3-step process. Justification: Clearly illustrates the sequence of the proposed AI solution without technical jargon, making it easy to understand. No SVG/Mermaid used.
+    - Technology Effectiveness Chart: Goal: Compare. Method: Horizontal Bar Chart (Chart.js/Canvas). Justification: A bar chart is the most effective way to compare the anti-jamming capabilities of different technologies, providing a clear visual ranking.
+    - ROI Donut Chart: Goal: Compare/Inform. Method: Donut Chart (Chart.js/Canvas). Justification: Visually represents the composition of annual costs, highlighting how the investment in security is a small fraction of the potential losses, making a strong case for ROI.
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light Blue-Gray Background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto max-w-5xl p-5 md:p-10">
+
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#0A2463]">Seguridad de Flotas en la Era Digital</h1>
+            <p class="mt-4 text-lg text-gray-600">Una visualización de la amenaza del bloqueo de señales y la estrategia de defensa proactiva basada en IA.</p>
+        </header>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#0A2463]">La Amenaza del Silencio Electrónico</h2>
+            <p class="text-center text-gray-600 mb-10">Los jammers crean una "burbuja de silencio" que inhabilita las comunicaciones, con consecuencias devastadoras.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-[#1E96FC]">
+                    <span class="text-5xl">📡</span>
+                    <p class="text-xl font-semibold mt-4">Aislamiento Total</p>
+                    <p class="text-5xl font-extrabold text-[#1E96FC] mt-2">100%</p>
+                    <p class="text-gray-500 mt-2">de pérdida de comunicación (GPS y Celular) durante un ataque.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-[#5C2751]">
+                     <span class="text-5xl">⏱️</span>
+                    <p class="text-xl font-semibold mt-4">Ventaja Crítica</p>
+                    <p class="text-5xl font-extrabold text-[#5C2751] mt-2">30-60</p>
+                    <p class="text-gray-500 mt-2">minutos es la ventana de tiempo promedio que ganan los delincuentes.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-[#F46036]">
+                     <span class="text-5xl">💸</span>
+                    <p class="text-xl font-semibold mt-4">Impacto Financiero</p>
+                    <p class="text-5xl font-extrabold text-[#F46036] mt-2">+50%</p>
+                    <p class="text-gray-500 mt-2">de incremento en primas de seguro tras incidentes recurrentes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20 bg-white p-8 md:p-12 rounded-2xl shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-10 text-[#0A2463]">Nuestra Estrategia: De la Reacción a la Predicción</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Implementamos un sistema de inteligencia artificial que transforma los datos en una defensa proactiva, anticipando incidentes antes de que ocurran a través de un proceso de tres fases.</p>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-center flex-1">
+                    <div class="bg-[#F0F4F8] w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl text-[#1E96FC] font-bold">1</div>
+                    <h3 class="text-xl font-bold mt-4">Recopilar Datos</h3>
+                    <p class="text-gray-500 mt-2">Integración de datos internos (GPS, sensores, ERP) con inteligencia externa (web, dark web, espectro).</p>
+                </div>
+                <div class="text-4xl text-gray-300 transform rotate-90 md:rotate-0">→</div>
+                <div class="text-center flex-1">
+                    <div class="bg-[#F0F4F8] w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl text-[#5C2751] font-bold">2</div>
+                    <h3 class="text-xl font-bold mt-4">Analizar con IA</h3>
+                    <p class="text-gray-500 mt-2">Creación de perfiles de riesgo dinámicos y detección de anomalías en tiempo real.</p>
+                </div>
+                 <div class="text-4xl text-gray-300 transform rotate-90 md:rotate-0">→</div>
+                <div class="text-center flex-1">
+                    <div class="bg-[#F0F4F8] w-24 h-24 rounded-full mx-auto flex items-center justify-center text-4xl text-[#F46036] font-bold">3</div>
+                    <h3 class="text-xl font-bold mt-4">Generar Alertas</h3>
+                    <p class="text-gray-500 mt-2">Emisión de "Hallazgos" y alertas predictivas para una acción preventiva y eficaz.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#0A2463]">Comparativa de Capas de Defensa</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">No todas las soluciones ofrecen el mismo nivel de protección. La efectividad contra el jamming es crucial, y nuestra propuesta combina múltiples tecnologías para una seguridad robusta y redundante.</p>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="effectivenessChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#0A2463]">Análisis del Retorno de Inversión (ROI)</h2>
+            <p class="text-center text-gray-600 mb-10 max-w-3xl mx-auto">La inversión en seguridad proactiva es significativamente menor que el costo de la inacción. El siguiente gráfico ilustra la distribución del costo anual estimado con y sin la solución implementada.</p>
+            <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="text-center py-8 bg-[#0A2463] text-white">
+        <p class="font-semibold">Transforme su seguridad. Proteja sus activos.</p>
+        <p class="text-sm text-gray-300 mt-2">Propuesta de Soluciones de Seguridad Avanzada para Flotillas.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            }
+            return label;
+        };
+        
+        const commonTooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback,
+                    },
+                    backgroundColor: '#0A2463',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 12,
+                    cornerRadius: 8,
+                    displayColors: false,
+                }
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const effectivenessCtx = document.getElementById('effectivenessChart').getContext('2d');
+            new Chart(effectivenessCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        'Comunicación Satelital',
+                        'Detección Activa de Jamming',
+                        'Medallón de Proximidad (BLE)',
+                        'Dispositivo Señuelo ("Canary")',
+                        'Botón de Pánico (NFC)'
+                    ].map(label => wrapLabel(label, 16)),
+                    datasets: [{
+                        label: 'Efectividad Anti-Jamming Estimada',
+                        data: [99, 95, 75, 50, 20],
+                        backgroundColor: ['#0A2463', '#1E96FC', '#5C2751', '#F46036', '#A9A9A9'],
+                        borderColor: 'rgba(255, 255, 255, 0.5)',
+                        borderWidth: 1,
+                        borderRadius: 5,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: value => value + '%'
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonTooltipConfig.plugins,
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Efectividad Estimada por Tecnología',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#0A2463',
+                            padding: { bottom: 20 }
+                        }
+                    }
+                }
+            });
+
+            const roiCtx = document.getElementById('roiChart').getContext('2d');
+            new Chart(roiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Pérdidas por Robo (Sin Solución)', 'Ahorro Potencial (60%)', 'Costo de la Solución'],
+                    datasets: [{
+                        label: 'Costo Anual Estimado',
+                        data: [100, -60, 15],
+                        backgroundColor: ['#F46036', '#4CAF50', '#0A2463'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        ...commonTooltipConfig.plugins,
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14 },
+                                padding: 20
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribución del Costo Anual y Ahorro',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#0A2463',
+                            padding: { bottom: 20 }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

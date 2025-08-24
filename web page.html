@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta de Seguridad Inteligente para Flotas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is structured as a single-page narrative dashboard. It starts with the core problem (Jamming), moves to the proposed strategic solution (AI-driven intelligence), details the multi-layered defense mechanisms (NFC, BLE, etc.), visualizes the potential impact (ROI), and ends with a call to action (Implementation Steps). This linear, story-driven flow is designed for a directorial audience, guiding them from the problem to the solution and its business value logically. Interactivity is introduced through clickable tabs for solutions and a dynamic chart for ROI, allowing exploration without overwhelming the user. This structure prioritizes clarity and persuasive communication over a complex, data-heavy dashboard. -->
+    <!-- Visualization & Content Choices: 
+        - Problem Section: Uses strong iconography (HTML Unicode) and concise text blocks to quickly establish the threat. Goal: Inform. Method: HTML/CSS. Interaction: Static. Justification: Immediately grabs attention and defines the problem's scope.
+        - AI Process Diagram: A 3-step flow diagram built with HTML/Tailwind. Goal: Organize. Method: HTML/CSS Flexbox. Interaction: Static visual flow. Justification: Simplifies a complex process into a digestible, linear sequence, which is more effective than a detailed technical chart for this audience.
+        - Solutions Tabs: Interactive tabs for each defense layer. Goal: Compare/Organize. Method: HTML/JS. Interaction: Click to show/hide content. Justification: Allows users to explore each solution without cluttering the page. It encourages engagement and provides detailed information on demand.
+        - ROI Chart: A dynamic bar chart (Chart.js). Goal: Inform/Compare. Method: Chart.js Canvas. Interaction: Hover for tooltips, potential for dynamic data updates. Justification: Visualizes the financial impact (the most critical point for executives) in a clear, compelling format. A bar chart is ideal for comparing cost vs. savings.
+        - Summary Table: A styled HTML table comparing solution attributes. Goal: Compare. Method: HTML/Tailwind. Interaction: Static. Justification: Provides a quick, scannable summary of all proposed technologies, reinforcing the multi-layered approach.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #333;
+        }
+        .tab-active {
+            border-bottom: 2px solid #C084FC;
+            color: #C084FC;
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #6B7280;
+        }
+        .card-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F9FAFB 100%);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-6xl">
+
+        <header class="text-center py-8 md:py-12">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-800 tracking-tight">Propuesta de Seguridad Inteligente</h1>
+            <p class="mt-4 text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">Transformando la seguridad de flotas de un modelo reactivo a una estrategia proactiva y predictiva.</p>
+        </header>
+
+        <main>
+            <section id="problema" class="mb-16 p-6 md:p-8 rounded-2xl shadow-lg card-gradient border border-gray-200">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-6">La Amenaza: Vulnerabilidad ante la Interferencia de Señal</h2>
+                <p class="text-center text-gray-600 mb-8 max-w-4xl mx-auto">
+                    El sector del transporte se enfrenta a un desafío creciente: el uso de dispositivos "jammers" que anulan las comunicaciones, creando una zona de exclusión alrededor del vehículo y paralizando su capacidad de respuesta.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <div class="text-4xl mb-3">📡</div>
+                        <h3 class="font-semibold text-lg text-purple-600">Ataque Sigiloso</h3>
+                        <p class="text-sm text-gray-500 mt-1">Los jammers bloquean GPS y redes celulares (2G-5G), dejando los sistemas de rastreo y comunicación inoperativos.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <div class="text-4xl mb-3"> 🚫</div>
+                        <h3 class="font-semibold text-lg text-purple-600">Aislamiento Total</h3>
+                        <p class="text-sm text-gray-500 mt-1">El vehículo queda incomunicado, impidiendo al operador solicitar asistencia y a la central recibir alertas de emergencia.</p>
+                    </div>
+                    <div class="p-6 bg-white rounded-xl border border-gray-100 shadow-sm">
+                        <div class="text-4xl mb-3">💸</div>
+                        <h3 class="font-semibold text-lg text-purple-600">Impacto Financiero</h3>
+                        <p class="text-sm text-gray-500 mt-1">Genera pérdidas directas, incremento en primas de seguro, daño reputacional y riesgo para el personal.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="solucion" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-2">La Solución: Inteligencia Artificial Proactiva</h2>
+                <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">
+                    Proponemos un ecosistema de seguridad que transforma datos brutos en inteligencia accionable, permitiendo anticipar y neutralizar amenazas antes de que ocurran.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+                    <div class="flex-1 p-6 rounded-xl text-center card-gradient border border-gray-200 shadow-sm">
+                        <div class="text-3xl mb-3">📊</div>
+                        <h3 class="font-semibold text-lg">1. Recopilación de Datos</h3>
+                        <p class="text-sm text-gray-500 mt-1">Integración de datos internos (GPS, ERP, sensores) con inteligencia externa (monitoreo de espectro, web).</p>
+                    </div>
+                    <div class="text-2xl text-purple-400 font-light hidden md:block">→</div>
+                    <div class="flex-1 p-6 rounded-xl text-center card-gradient border border-gray-200 shadow-sm">
+                        <div class="text-3xl mb-3">🧠</div>
+                        <h3 class="font-semibold text-lg">2. Análisis Predictivo IA</h3>
+                        <p class="text-sm text-gray-500 mt-1">Creación de perfiles de riesgo dinámicos e identificación de comportamientos anómalos en tiempo real.</p>
+                    </div>
+                    <div class="text-2xl text-purple-400 font-light hidden md:block">→</div>
+                    <div class="flex-1 p-6 rounded-xl text-center card-gradient border border-gray-200 shadow-sm">
+                        <div class="text-3xl mb-3">🔔</div>
+                        <h3 class="font-semibold text-lg">3. Inteligencia Accionable</h3>
+                        <p class="text-sm text-gray-500 mt-1">Generación de "Hallazgos" y alertas predictivas para una toma de decisiones anticipada y eficaz.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="estrategias" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-10">Estrategias de Mitigación por Capas</h2>
+                <div class="bg-white rounded-2xl shadow-lg border border-gray-200 p-4 sm:p-6">
+                    <div class="flex border-b border-gray-200">
+                        <button id="tab-1" class="tab-btn py-3 px-4 text-sm sm:text-base tab-active">Nivel 1: Activación Discreta</button>
+                        <button id="tab-2" class="tab-btn py-3 px-4 text-sm sm:text-base tab-inactive">Nivel 2: Respuesta Automática</button>
+                        <button id="tab-3" class="tab-btn py-3 px-4 text-sm sm:text-base tab-inactive">Soluciones Complementarias</button>
+                    </div>
+                    <div id="content-1" class="tab-content py-6">
+                        <h3 class="font-bold text-xl text-purple-600 mb-3">Botón de Pánico NFC</h3>
+                        <p class="text-gray-600 mb-4">Empodera al operador para actuar de forma rápida y silenciosa. Al acercar su smartphone a un Tag NFC discreto, se activa un protocolo de emergencia que envía una alerta con la última ubicación GPS conocida, incluso antes de que el bloqueo de señal sea total.</p>
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Bajo Costo</span>
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Implementación Sencilla</span>
+                    </div>
+                    <div id="content-2" class="tab-content py-6 hidden">
+                        <h3 class="font-bold text-xl text-purple-600 mb-3">Medallón "Hombre-Caído" (BLE)</h3>
+                        <p class="text-gray-600 mb-4">Diseñado para escenarios de alto riesgo. Si el operador se aleja del vehículo, un medallón personal con tecnología BLE pierde conexión con la unidad base, activando un protocolo de contraataque. El sistema busca automáticamente el canal de comunicación más fiable, incluyendo una conmutación a **comunicación satelital** si las redes celulares están bloqueadas.</p>
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Alta Fiabilidad</span>
+                        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Respuesta Automática</span>
+                    </div>
+                    <div id="content-3" class="tab-content py-6 hidden">
+                        <h3 class="font-bold text-xl text-purple-600 mb-3">Fortalecimiento del Ecosistema de Seguridad</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-2">
+                            <li><strong>Detección Activa de Jamming:</strong> Un "escáner de espectro" detecta la señal del jammer, generando una alerta temprana.</li>
+                            <li><strong>Navegación Inercial:</strong> Estima la ruta del vehículo cuando el GPS es bloqueado para reconstrucción forense.</li>
+                            <li><strong>Dispositivo Señuelo ("Canary"):</strong> Una unidad de rastreo oculta que se activa si la unidad principal falla.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="impacto" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-2">Proyección de Impacto y Retorno de la Inversión</h2>
+                 <p class="text-center text-gray-600 mb-10 max-w-4xl mx-auto">
+                    La implementación de esta solución se concibe como una inversión estratégica. Con una reducción proyectada de robos del 30-50%, el impacto en los resultados de negocio es directo y cuantificable.
+                </p>
+                <div class="card-gradient border border-gray-200 shadow-lg rounded-2xl p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resumen-tecnologias" class="mb-16">
+                <h2 class="text-2xl md:text-3xl font-bold text-center text-purple-700 mb-10">Resumen Comparativo de Tecnologías</h2>
+                <div class="overflow-x-auto bg-white rounded-2xl shadow-lg border border-gray-200">
+                    <table class="w-full text-sm text-left text-gray-500">
+                        <thead class="text-xs text-purple-700 uppercase bg-purple-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Tecnología</th>
+                                <th scope="col" class="px-6 py-3">Función Principal</th>
+                                <th scope="col" class="px-6 py-3">Efectividad Anti-Jamming</th>
+                                <th scope="col" class="px-6 py-3">Dependencia del Operador</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Botón de Pánico NFC</th>
+                                <td class="px-6 py-4">Alerta Temprana</td>
+                                <td class="px-6 py-4">Nula (pre-bloqueo)</td>
+                                <td class="px-6 py-4">Alta</td>
+                            </tr>
+                            <tr class="bg-purple-50 border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Medallón de Proximidad BLE</th>
+                                <td class="px-6 py-4">Alerta Automática</td>
+                                <td class="px-6 py-4">Alta (con canal satelital)</td>
+                                <td class="px-6 py-4">Nula</td>
+                            </tr>
+                            <tr class="bg-white border-b">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Detección Activa de Jamming</th>
+                                <td class="px-6 py-4">Detección Proactiva</td>
+                                <td class="px-6 py-4">Muy Alta</td>
+                                <td class="px-6 py-4">Nula</td>
+                            </tr>
+                            <tr class="bg-purple-50">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">Navegación Inercial</th>
+                                <td class="px-6 py-4">Recuperación / Forense</td>
+                                <td class="px-6 py-4">N/A (post-bloqueo)</td>
+                                <td class="px-6 py-4">Nula</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="implementacion" class="text-center bg-purple-700 text-white p-8 md:p-12 rounded-2xl">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4">Hitos y Requerimientos para la Implementación</h2>
+                <p class="max-w-3xl mx-auto mb-8">
+                    Para diseñar un plan a la medida, es fundamental colaborar y entender sus necesidades específicas. Solicitamos su apoyo para cuantificar el impacto actual y definir los criterios de éxito del proyecto.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Cuantificación de Pérdidas</span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Disponibilidad de Recursos</span>
+                    <span class="bg-purple-100 text-purple-800 text-sm font-medium px-4 py-2 rounded-full">Proceso de Decisión</span>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center py-8 mt-8 border-t border-gray-200">
+            <p class="text-sm text-gray-500">&copy; 2025 Propuesta de Soluciones de Seguridad. Todos los derechos reservados.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('tab-inactive');
+                    });
+                    this.classList.remove('tab-inactive');
+                    this.classList.add('tab-active');
+
+                    const targetId = this.id.replace('tab-', 'content-');
+                    contents.forEach(content => {
+                        if (content.id === targetId) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const ctx = document.getElementById('roiChart').getContext('2d');
+            const roiChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pérdidas Actuales (Estimado)', 'Pérdidas con Solución (Reducción 40%)', 'Inversión en Solución'],
+                    datasets: [{
+                        label: 'Impacto Financiero (MXN)',
+                        data: [15000000, 9000000, 3500000],
+                        backgroundColor: [
+                            'rgba(239, 68, 68, 0.6)',
+                            'rgba(34, 197, 94, 0.6)',
+                            'rgba(168, 85, 247, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(34, 197, 94, 1)',
+                            'rgba(168, 85, 247, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    return '$' + (value / 1000000) + 'M';
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Análisis de Retorno de Inversión (Anual Estimado)',
+                            font: {
+                                size: 16
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 20
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

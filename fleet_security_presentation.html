@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluciones Anti-Jamming para Flotillas | Propuesta Ejecutiva</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header-content .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://upload.wikimedia.org/wikipedia/commons/0/0f/Truck_fleet.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        main {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
+        .grid-3 { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
+        .grid-4 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .card-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .card-list li:last-child {
+            border-bottom: none;
+        }
+
+        .card-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            z-index: 1;
+        }
+
+        .process-step {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #667eea;
+            z-index: 2;
+            position: relative;
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .effectiveness-high { color: #27ae60; font-weight: bold; }
+        .effectiveness-medium { color: #f39c12; font-weight: bold; }
+        .effectiveness-low { color: #e74c3c; font-weight: bold; }
+        .effectiveness-none { color: #95a5a6; font-weight: bold; }
+
+        .cost-low { color: #27ae60; }
+        .cost-medium { color: #f39c12; }
+        .cost-high { color: #e74c3c; }
+
+        .problem-highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .problem-highlight h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .solution-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .solution-level {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .solution-level h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .key-questions {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .future-vision {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 { font-size: 2rem; }
+            .hero-content h2 { font-size: 2rem; }
+            .section-title { font-size: 1.8rem; }
+            .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .process-steps { flex-direction: column; gap: 1rem; }
+            .process-steps::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Soluciones Anti-Jamming para Flotillas</h1>
+                <p class="subtitle">Propuesta Ejecutiva de Seguridad Avanzada</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Protección Integral</h2>
+            <p>Sistema inteligente que monitorea, predice y previene ataques de jamming en flotillas de transporte</p>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <!-- Resumen Ejecutivo -->
+            <section class="section">
+                <h2 class="section-title">Resumen Ejecutivo</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🎯 Objetivo</h3>
+                            <p class="card-text">Sistema que monitorea, predice y previene el robo de combustible mediante inteligencia avanzada.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🔄 Integración</h3>
+                            <p class="card-text">Combina datos operativos internos con inteligencia externa en tiempo real.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🛡️ Visión</h3>
+                            <p class="card-text">Enfoque proactivo de seguridad con capacidades predictivas.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Proceso -->
+            <section class="section">
+                <h2 class="section-title">Fases del Proceso</h2>
+                <div class="process-steps">
+                    <div class="process-step">1</div>
+                    <div class="process-step">2</div>
+                    <div class="process-step">3</div>
+                </div>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=200&fit=crop&crop=center" alt="Recopilación de datos" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">1. Recopilación</h3>
+                            <ul class="card-list">
+                                <li><strong>Telemetría:</strong> GPS, IoT, sensores vehiculares</li>
+                                <li><strong>ERP:</strong> Datos operativos y logísticos</li>
+                                <li><strong>Videovigilancia:</strong> Cámaras y análisis visual</li>
+                                <li><strong>Espectro:</strong> Monitoreo de señales RF</li>
+                                <li><strong>Satelital:</strong> Imágenes y comunicación</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=500&h=200&fit=crop&crop=center" alt="Análisis con IA" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">2. Análisis IA</h3>
+                            <ul class="card-list">
+                                <li><strong>Riesgo dinámico:</strong> Evaluación continua</li>
+                                <li><strong>Detección de anomalías:</strong> Patrones inusuales</li>
+                                <li><strong>Predicciones:</strong> Probabilidad de incidentes</li>
+                                <li><strong>Perfiles:</strong> Caracterización de amenazas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=200&fit=crop&crop=center" alt="Acciones coordinadas" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">3. Acción</h3>
+                            <ul class="card-list">
+                                <li><strong>Alertas:</strong> Notificaciones automáticas</li>
+                                <li><strong>Playbooks:</strong> Protocolos de respuesta</li>
+                                <li><strong>Coordinación:</strong> Con C2 y autoridades</li>
+                                <li><strong>Neutralización:</strong> Medidas preventivas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- El Problema -->
+            <section class="section">
+                <div class="problem-highlight">
+                    <h3>🚨 El Problema: Bloqueo de Señales</h3>
+                    <p>Los dispositivos de jamming crean una "burbuja de silencio" que corta GPS, comunicaciones celulares, video y telemetría, dejando el vehículo completamente aislado y vulnerable.</p>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=500&h=200&fit=crop&crop=center" alt="Dispositivo jammer" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">Características del Jamming</h3>
+                            <ul class="card-list">
+                                <li><strong>Efecto:</strong> "Burbuja de silencio" total</li>
+                                <li><strong>Alcance:</strong> Múltiples bandas (2G/3G/4G/GPS/WiFi)</li>
+                                <li><strong>Consecuencia:</strong> Vehículo completamente aislado</li>
+                                <li><strong>Objetivo:</strong> Ganar ventana operativa sin rastreo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Impacto Operativo</h3>
+                            <ul class="card-list">
+                                <li><strong>Comunicación:</strong> Pérdida total de contacto</li>
+                                <li><strong>Localización:</strong> GPS inoperante</li>
+                                <li><strong>Respuesta:</strong> Tiempos extendidos</li>
+                                <li><strong>Evidencia:</strong> Sin registro de incidentes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soluciones -->
+            <section class="section">
+                <h2 class="section-title">Soluciones por Niveles</h2>
+                <div class="solution-levels">
+                    <div class="solution-level">
+                        <h4>Nivel 1: NFC</h4>
+                        <p><strong>Botón de Pánico</strong><br>
+                        Activación manual rápida y discreta antes de la pérdida total de comunicaciones.</p>
+                    </div>
+                    <div class="solution-level">
+                        <h4>Nivel 2: BLE</h4>
+                        <p><strong>Medallón Inteligente</strong><br>
+                        Detección automática por pérdida de proximidad del operador con redundancia satelital.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/NFC-logo.svg" alt="NFC" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">Solución NFC</h3>
+                            <ul class="card-list">
+                                <li><strong>Ventajas:</strong> Activación rápida y discreta</li>
+                                <li><strong>Costo:</strong> Muy bajo, mantenimiento cero</li>
+                                <li><strong>Uso:</strong> Antes de pérdida de comunicaciones</li>
+                                <li><strong>Limitación:</strong> Requiere acción humana</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Bluetooth_icon.svg" alt="Bluetooth" class="card-image">
+                        <div class="card-content">
+                            <h3 class="card-title">Medallón BLE</h3>
+                            <ul class="card-list">
+                                <li><strong>Proximidad:</strong> Alerta por pérdida de contacto</li>
+                                <li><strong>Backhaul:</strong> Redundancia celular + satelital</li>
+                                <li><strong>Automatización:</strong> Sin intervención humana</li>
+                                <li><strong>Fiabilidad:</strong> Activación garantizada</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soluciones Complementarias -->
+            <section class="section">
+                <h2 class="section-title">Tecnologías Complementarias</h2>
+                <div class="grid grid-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🔍 Detección Activa</h3>
+                            <p class="card-text">Sensado de jamming en bandas relevantes con alertas automáticas.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🧭 Navegación Inercial</h3>
+                            <p class="card-text">Registro de trayectoria para análisis forense posterior.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">🎯 Dispositivo Señuelo</h3>
+                            <p class="card-text">Tracker "canary" oculto para recuperación del vehículo.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">📡 LPWAN</h3>
+                            <p class="card-text">Canales alternativos (LoRaWAN/Sigfox) donde sea aplicable.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla Comparativa -->
+            <section class="section">
+                <h2 class="section-title">Comparativo de Tecnologías</h2>
+                <div class="comparison-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Tecnología</th>
+                                <th>Función</th>
+                                <th>Efectividad Anti-Jamming</th>
+                                <th>Dependencia del Operador</th>
+                                <th>Costo</th>
+                                <th>Vulnerabilidades</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>NFC</strong></td>
+                                <td>Alerta</td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="effectiveness-high">Alta</span></td>
+                                <td><span class="cost-low">Bajo</span></td>
+                                <td>Requiere acción previa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BLE</strong></td>
+                                <td>Alerta</td>
+                                <td><span class="effectiveness-low">Baja</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-medium">Medio</span></td>
+                                <td>Spoofing</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Detección Jamming</strong></td>
+                                <td>Detección</td>
+                                <td><span class="effectiveness-high">Alta</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-high">Alto</span></td>
+                                <td>Configuración y calibración</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bloqueo Motor</strong></td>
+                                <td>Neutralización</td>
+                                <td><span class="effectiveness-high">Alta</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-high">Alto</span></td>
+                                <td>Paro inseguro si mal orquestado</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Satelital</strong></td>
+                                <td>Alerta</td>
+                                <td><span class="effectiveness-high">Inmune</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-high">Alto</span></td>
+                                <td>Cuota de servicio</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Inercial</strong></td>
+                                <td>Forense</td>
+                                <td><span class="effectiveness-medium">N/A</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-medium">Medio</span></td>
+                                <td>Deriva acumulativa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Señuelo</strong></td>
+                                <td>Recuperación</td>
+                                <td><span class="effectiveness-low">Baja</span></td>
+                                <td><span class="effectiveness-none">Nula</span></td>
+                                <td><span class="cost-medium">Medio</span></td>
+                                <td>Depende de salir del área</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Preguntas Clave -->
+            <section class="section">
+                <div class="key-questions">
+                    <h2 class="section-title">Preguntas Clave para Evaluación</h2>
+                    <div class="grid grid-2">
+                        <div>
+                            <h4>📊 Estado Actual</h4>
+                            <p>¿Qué tecnología tienen implementada actualmente y dónde están las principales fallas?</p>
+                            
+                            <h4>💰 Impacto Financiero</h4>
+                            <p>¿Cuáles son las pérdidas anuales y los principales riesgos identificados?</p>
+                        </div>
+                        <div>
+                            <h4>🎯 Objetivos de Negocio</h4>
+                            <p>¿Cuál es el costo de no actuar y qué ROI esperan obtener?</p>
+                            
+                            <h4>✅ Criterios de Éxito</h4>
+                            <p>¿Qué resultados específicos buscan y cuáles son sus criterios de compra?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visión de Futuro -->
+            <section class="section">
+                <div class="future-vision">
+                    <h2>🚀 Visión de Futuro</h2>
+                    <div class="grid grid-3">
+                        <div>
+                            <h4>Reducción de Robos</h4>
+                            <p>Meta de 30-50% con despliegue por fases</p>
+                        </div>
+                        <div>
+                            <h4>Plataforma 24/7</h4>
+                            <p>Inteligencia operativa y tableros en tiempo real</p>
+                        </div>
+                        <div>
+                            <h4>Integración Total</h4>
+                            <p>Con BI, ERP y procesos de transformación digital</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para Proteger su Flotilla?</h2>
+            <p>Contacte con nuestro equipo de especialistas para una evaluación personalizada</p>
+            <a href="mailto:dlopez@progressiverobotics.ai" class="cta-button">Solicitar Propuesta</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 | Soluciones de Seguridad para Flotillas - Propuesta Ejecutiva Anti-Jamming</p>
+        </div>
+    </footer>
+</body>
+</html>
